@@ -8,27 +8,20 @@ def multiple_of_five(n)
 end
 
 def array_of_multiples(n)
-  @multiple_array = []
-  (1..n-1).each do |number|
+  (1..n-1).each_with_object(Array.new) do |number, multiples|
     if multiple_of_five(number)
-      @multiple_array.push(number)
+      multiples << number
     elsif multiple_of_three(number)
-      @multiple_array << number
+      multiples << number
     else
       "Not a multiple"
     end
   end
-  @multiple_array
 end
 
 def sum_of_multiples(n)
-  array_of_multiples(n)
-  @multiple_array.inject(:+)
+  array_of_multiples(n).inject(:+)
 end
 
-# p multiple_of_three(9)
-# p multiple_of_three(8)
-# p multiple_of_five(15)
-# p multiple_of_five(60)
 
-p sum_of_multiples(1000)
+p sum_of_multiples(1000) == 233168
